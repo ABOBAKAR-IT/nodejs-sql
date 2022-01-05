@@ -4,5 +4,5 @@ let user=database.define('user_table',{
     name:Sequelize.STRING,
     email:Sequelize.STRING,
     password:Sequelize.STRING
-})
+},{timestamps:true})
 module.exports=user;
