@@ -15,7 +15,7 @@ app.listen(port,()=>{
 console.log(`server work on port no ${port}`);
 database.authenticate().then(()=>{
     console.log("database connected");
-    database.sync({force:false,match:/test$/}).then(()=>{//
+    database.sync().then(()=>{//
         console.log("create table");
     }).catch((err)=>{
         console.log(err);
