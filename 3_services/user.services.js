@@ -7,6 +7,19 @@ password:body.password
 })
 return data;
 }
+module.exports.bulk=async(body)=>{
+    let data=await user.bulkCreate([{
+   name:body[0].name,
+   email:body[0].email,
+   password:body[0].password
+   },{
+    name:body[1].name,
+    email:body[1].email,
+    password:body[1].password
+    }]
+   )
+   return data;
+   }
 module.exports.update=async(body)=>{
     let data=await user.update({
         name:body.name,
