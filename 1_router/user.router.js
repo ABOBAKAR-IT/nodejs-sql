@@ -1,7 +1,5 @@
 const app=require('express')
-
 const user_route=app.Router();
-
 const {add,update,findall,findone,del,bulk,truncate}=require('../2_controlar/user.controlar')
 user_route.post('/add',add)
 user_route.post('/update',update)
