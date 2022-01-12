@@ -1,3 +1,4 @@
+const { Sequelize } = require("sequelize");
 const user = require("../model/user");
 module.exports.add = async (body) => {
   let data = await user.create({
@@ -36,7 +37,25 @@ module.exports.update = async (body) => {
 };
 
 module.exports.findall = async (body) => {
-  let data = await user.findAll();
+  let data = await user.findAll({
+
+    //**********selecte*********
+
+    // attributes: ["name", ["email", "email_id"], //find only attrubutes & change field name email to email_id
+    // [Sequelize.fn('count',Sequelize.col('email')),'emailcount']]//use for count
+
+
+    //************exclude and include********
+
+    // attributes:{
+    //   exclude:["createdAt","updatedAt"],//use for remove
+    //   include:[[Sequelize.fn('CONCAT',Sequelize.col("name")," khan"),'fullname']]//use for add
+    // }
+
+//***********condition********** */
+
+
+  });
   return data;
 };
 module.exports.findone = async (body) => {
@@ -55,14 +74,19 @@ module.exports.del = async (body) => {
   }
 };
 module.exports.truncate = async (body) => {
-    try {
-      let data = await user.destroy({ truncate:true });
-  
-      if (data == 0) return "all user delete";
-      else return "not delete";
-    } catch (error) {
-      console.log(": " + error);
-      return error;
-    }
-  };
-  
+  try {
+    let data = await user.destroy({ truncate: true });
+
+    if (data == 0) return "all user delete";
+    else return "not delete";
+  } catch (error) {
+    console.log(": " + error);
+    return error;
+  }
+};
+module.exports.findquery = async (body) => {
+  let data = await user.findAll({
+    attribute: [name],
+  });
+  return data;
+};
