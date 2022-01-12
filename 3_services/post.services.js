@@ -3,8 +3,7 @@ const post = require("../model/post");
 module.exports.add = async (body) => {
   let data = await post.create({
     name: body.name,
-    email: body.email,
-    password: body.password,
+  title:body.title
   });
   return data;
 };
@@ -13,13 +12,11 @@ module.exports.bulk = async (body) => {
     {
       // save maltipel data using bulkCreate
       name: body[0].name,
-      email: body[0].email,
-      password: body[0].password,
+      title:body[0].title
     },
     {
       name: body[1].name,
-      email: body[1].email,
-      password: body[1].password,
+      title:body[1].title
     },
   ]);
   return data;
@@ -28,8 +25,7 @@ module.exports.update = async (body) => {
   let data = await post.update(
     {
       name: body.name,
-      email: body.email,
-      password: body.password,
+      title:body.title
     },
     { where: { id: body.id } }
   );
