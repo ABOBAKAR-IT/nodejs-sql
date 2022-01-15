@@ -1,9 +1,11 @@
 const { Sequelize } = require("sequelize");
 const post = require("../model/post");
+const user = require("../model/user");
 module.exports.add = async (body) => {
   let data = await post.create({
     name: body.name,
-  title:body.title
+  title:body.title,
+  userTableId:body.userTableId
   });
   return data;
 };
@@ -86,3 +88,9 @@ module.exports.findquery = async (body) => {
   });
   return data;
 };
+module.exports.findpost=async(body)=>{
+  let data=await post.findAll({
+    include:user
+  })
+  return data
+  }

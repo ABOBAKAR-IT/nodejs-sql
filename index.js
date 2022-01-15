@@ -7,7 +7,7 @@ const postrouter=require('./1_router/post.router')
 const relationship=require('./relationship')
 const app=express();
 app.use(express.json());
-const port=9000;
+const port=9100;
 app.get("/",(req,res)=>{
 res.send("hello werd")
 })
@@ -19,7 +19,7 @@ app.listen(port,()=>{
 console.log(`server work on port no ${port}`);
 database.authenticate().then(()=>{
     console.log("database connected");
-    database.sync().then(()=>{//
+    database.sync({force:false}).then(()=>{//
         console.log("create table");
     }).catch((err)=>{
         console.log(err);
