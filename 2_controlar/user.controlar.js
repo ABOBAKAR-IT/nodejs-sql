@@ -1,4 +1,4 @@
-const {add,update,findall,findone,del,bulk,truncate}=require('../3_services/user.services')
+const {add,update,findall,findone,del,bulk,truncate,findpost}=require('../3_services/user.services')
 module.exports.add=async(req,res)=>{
   let data=await  add(req.body)
    res.send(data);
@@ -27,4 +27,8 @@ module.exports.update=async(req,res)=>{
   module.exports.truncate=async(req,res)=>{
     let data=await  truncate(req.body)
     res.send(data)
+  }
+  module.exports.findpost=async(req,res)=>{
+    let data=await  findpost(req.body)
+     res.send(data);
   }
